@@ -6,9 +6,12 @@ serve(async (request) => {
   const url = new URL(request.url);
 
   if (url.pathname === "/") {
-    return fetch(new URL("./Readme.md", import.meta.url));
-  }
-
+    return new Response ("chatboom", {
+      headers: {
+        "content-type": "text/plain; charset=UTF-8"
+  },
+  });
+}
   url.host = OPENAI_API_HOST;
   return await fetch(url, request);
 });
